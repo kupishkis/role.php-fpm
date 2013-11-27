@@ -5,8 +5,9 @@
 
 - name: Add php5.4 repository
   sudo: true
-  apt_repository: repo='ppa:ondrej/php5'
+  apt_repository: repo='ppa:ondrej/php5-oldstable'
   register: result
+  when: ansible_distribution|Ubuntu
 
 - name: Update apt cache
   sudo: true
