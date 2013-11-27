@@ -1,6 +1,6 @@
 ---
-- name: Install php-fpm and deps 
-  yum: name={{ item }} state=present
+- name: Install php-fpm and deps
+  apt: pkg={{ item }} state=present
   with_items:
     - php
     - php-fpm
