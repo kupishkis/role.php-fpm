@@ -1,0 +1,5 @@
+
+php_fpm_user: www-data
+php_fpm_group: www-data
+php_fpm_var_dir: /var/run/php5-fmp
+
