@@ -2,12 +2,12 @@
 - name: Add php5.4 repository
   sudo: true
   apt_repository: repo='ppa:ondrej/php5'
-  export: result
+  register: result
 
 - name: Update apt cache
   sudo: true
   apt: update_cache=yes
-  when: result == true
+  when: result|success
 
 - name: Install php-fpm and deps
   sudo: true
