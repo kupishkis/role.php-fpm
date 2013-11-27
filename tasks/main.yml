@@ -1,4 +1,8 @@
 ---
+- name: Ensure python-pycurl exist in the system.
+  sudo: true
+  apt: pkg=python-pycurl state=latest
+
 - name: Add php5.4 repository
   sudo: true
   apt_repository: repo='ppa:ondrej/php5'
