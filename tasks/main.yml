@@ -7,7 +7,7 @@
   sudo: true
   apt_repository: repo='ppa:ondrej/php5-oldstable'
   register: result
-  when: ansible_distribution|Ubuntu
+  when: ansible_distribution == 'Ubuntu'
 
 - name: Update apt cache
   sudo: true
