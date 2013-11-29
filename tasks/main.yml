@@ -9,7 +9,7 @@
 
 - name: ensure socket directory exist and is owned by correct user
   sudo: true
-  file: path={{php_fpm_var_dir}} state=directory owner={{php_fpm_user}} group={{php_fpm_group}}
+  file: path={{php_fpm_var_dir}} state=directory owner={{php_fpm_user}} group={{php_fpm_group}} mode=0777
   notify: restart php-fpm
 
 - name: disable default pool
