@@ -6,6 +6,7 @@
     - php5
     - php5-fpm
     - php5-mysql
+    - php5-cli
 
 - name: ensure socket directory exist and is owned by correct user
   sudo: true
