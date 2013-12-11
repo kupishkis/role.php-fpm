@@ -1,6 +1,6 @@
 
 php_fpm_user: www-data
 php_fpm_group: www-data
-php_fpm_var_dir: /var/run/php5-fpm
+php_fpm_var_dir: /var/run/
 php_fpm_pool_dir: /etc/php5/fpm/pool.d
 

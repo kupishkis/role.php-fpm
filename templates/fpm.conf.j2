@@ -2,7 +2,7 @@
 
 [{{item.name}}]
 
-listen = {{php_fpm_var_dir}}/{{item.name}}.sock
+listen = {{php_fpm_var_dir}}/fpm-{{item.name}}.sock
 listen.owner = {{php_fpm_user}}
 listen.group = {{php_fpm_group}}
 listen.mode = 0660
