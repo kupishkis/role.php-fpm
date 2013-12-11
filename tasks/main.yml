@@ -13,6 +13,10 @@
   file: path={{php_fpm_var_dir}} state=directory owner={{php_fpm_user}} group={{php_fpm_group}} mode=0777
   notify: restart php-fpm
 
+- name: ensure socket directory persists between reboots
+  sudo: true
+  lineinfile: dest=/etc/rc.local line='mkdir -p {{php_fpm_var_dir}}; chown {{php_fpm_user}}:{{php_fpm_group}} {{php_fpm_var_dir}}' insertbefore='^exit 0' state=present
+
 - name: disable default pool
   sudo: true
   file: path={{php_fpm_pool_dir}}/www.conf state=absent
