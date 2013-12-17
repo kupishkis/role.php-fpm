@@ -1,7 +1,7 @@
 ---
 - name: ensure php-fpm exists
   sudo: true
-  apt: pkg={{ item }} state=latest
+  apt: pkg={{item}} state=latest
   with_items:
     - php5
     - php5-fpm
@@ -16,3 +16,18 @@
 - include: deploy.yml
   when: www_servers is defined
 
+- name: display errors
+  sudo: true
+  lineinfile: >
+    dest={{php_fpm_etc_dir}}/php.ini
+    regexp='^;?display_errors\s?=\s?(Off|On)'
+    line='display_errors = On'
+  notify: restart php-fpm
+
+- name: set time zone
+  sudo: true
+  lineinfile: >
+    dest={{php_fpm_etc_dir}}/php.ini
+    regexp='^;?date\.timezone.*'
+    line='date.timezone = UTC'
+  notify: restart php-fpm
