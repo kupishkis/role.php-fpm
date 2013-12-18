@@ -1,5 +1,11 @@
 ---
 - name: deploy fpm configurations
   sudo: yes
-  template: dest={{php_fpm_pool_dir}}/{{item.name}}.conf src=fpm.conf.j2 backup=yes owner={{php_fpm_user}} group={{php_fpm_group}} mode=0644
+  template: >
+    dest={{php_fpm_pool_dir}}/{{item.name}}.conf
+    src=fpm.conf.j2
+    backup=yes
+    owner={{php_fpm_user}}
+    group={{php_fpm_group}}
+    mode=0644
   with_items: www_servers
