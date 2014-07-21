@@ -1,12 +1,23 @@
 ---
+- name: add php5.5 ppa
+  sudo: true
+  apt_repository: repo='ppa:ondrej/php5'
+
 - name: ensure php-fpm exists
   sudo: true
   apt: pkg={{item}} state=latest
   with_items:
     - php5
     - php5-fpm
-    - php5-mysql
     - php5-cli
+  notify: restart php-fpm
+
+- name: ensure required php extensions exist
+  sudo: true
+  apt: pkg={{item}} state=latest
+  with_items: php_extensions
+  when: php_extensions is defined
+  notify: restart php-fpm
 
 - name: disable default pool
   sudo: true
@@ -15,6 +26,7 @@
 
 - include: deploy.yml
   when: www_servers is defined
+  notify: restart php-fpm
 
 - name: display errors
   sudo: true
