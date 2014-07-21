@@ -19,6 +19,13 @@
   when: php_extensions is defined
   notify: restart php-fpm
 
+- name: ensure required php modules are enabled
+  sudo: true
+  console: php5enmod {{item}}
+  with_items: php_modules
+  when: php_modules is defined
+  notify: restart php-fpm
+
 - name: disable default pool
   sudo: true
   file: path={{php_fpm_pool_dir}}/www.conf state=absent
