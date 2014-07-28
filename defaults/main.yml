@@ -3,4 +3,5 @@ php_fpm_user: www-data
 php_fpm_group: www-data
 php_fpm_var_dir: /var/run
 php_fpm_etc_dir: /etc/php5/fpm
+php_cli_etc_dir: /etc/php5/cli
 php_fpm_pool_dir: '{{php_fpm_etc_dir}}/pool.d'

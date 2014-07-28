@@ -43,10 +43,18 @@
     line='display_errors = On'
   notify: restart php-fpm
 
-- name: set time zone
+- name: set time zone FPM
   sudo: true
   lineinfile: >
     dest={{php_fpm_etc_dir}}/php.ini
     regexp='^;?date\.timezone.*'
     line='date.timezone = UTC'
   notify: restart php-fpm
+
+- name: set time zone CLI
+  sudo: true
+  lineinfile: >
+    dest={{php_cli_etc_dir}}/php.ini
+    regexp='^;?date\.timezone.*'
+    line='date.timezone = UTC'
+
