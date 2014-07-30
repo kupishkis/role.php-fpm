@@ -21,7 +21,7 @@
 
 - name: ensure required php modules are enabled
   sudo: true
-  console: php5enmod {{item}}
+  command: php5enmod {{item}}
   with_items: php_modules
   when: php_modules is defined
   notify: restart php-fpm
