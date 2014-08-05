@@ -37,24 +37,23 @@
 
 - name: display errors
   sudo: true
-  lineinfile: >
-    dest={{php_fpm_etc_dir}}/php.ini
-    regexp='^;?display_errors\s?=\s?(Off|On)'
-    line='display_errors = On'
+  ini_file: dest={{php_fpm_etc_dir}}/php.ini section="PHP" option="display_errors" value="On" backup=yes
   notify: restart php-fpm
+
+- name: error reporting level for FPM
+  sudo: true
+  ini_file: dest={{php_fpm_etc_dir}}/php.ini section="PHP" option="error_reporting" value="E_ALL" backup=yes
+  notify: restart php-fpm
+
+- name: error reporting level for CLI
+  sudo: true
+  ini_file: dest={{php_cli_etc_dir}}/php.ini section="PHP" option="error_reporting" value="E_ALL" backup=yes
 
 - name: set time zone FPM
   sudo: true
-  lineinfile: >
-    dest={{php_fpm_etc_dir}}/php.ini
-    regexp='^;?date\.timezone.*'
-    line='date.timezone = UTC'
+  ini_file: dest={{php_fpm_etc_dir}}/php.ini section="Date" option="date.timezone" value="UTC" backup=yes
   notify: restart php-fpm
 
 - name: set time zone CLI
   sudo: true
-  lineinfile: >
-    dest={{php_cli_etc_dir}}/php.ini
-    regexp='^;?date\.timezone.*'
-    line='date.timezone = UTC'
-
+  ini_file: dest={{php_cli_etc_dir}}/php.ini section="Date" option="date.timezone" value="UTC" backup=yes
