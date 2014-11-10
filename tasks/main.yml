@@ -1,7 +1,7 @@
 ---
-- name: add php5.5 ppa
-  sudo: true
-  apt_repository: repo='ppa:ondrej/php5'
+#- name: add php5.5 ppa
+#  sudo: true
+#  apt_repository: repo='ppa:ondrej/php5'
 
 - name: ensure php-fpm exists
   sudo: true
